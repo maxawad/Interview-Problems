@@ -7,9 +7,11 @@ Word Font Size
 
 
 Inputs:
+```javascript
 let string =
   "Hello, my name is Xiaolong.";
 let width = 12;
+```
 
 Response: Interger of how many lines it takes to display
 Commans and spaces must overflow
