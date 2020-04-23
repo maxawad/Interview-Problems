@@ -14,6 +14,7 @@ let width = 12;
 Response: Interger of how many lines it takes to display
 Commans and spaces must overflow
 
+```javascript
 let solution = (str, width) => {
   let rtnArr = [];
   let { words, char } = [...str].reduce(
@@ -52,3 +53,4 @@ let solution = (str, width) => {
 };
 
 console.log(solution(string, width));
+```
