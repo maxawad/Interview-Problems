@@ -1,58 +1,40 @@
 # Interview-Problems
 
-Number one:
+A small collection of coding interview problems, each with a worked JavaScript solution. At the moment it holds one problem, "How many lines", about wrapping text to a fixed width.
 
-How many lines
-Word Font Size
+## Problems
 
+### Number one: How many lines
 
-Inputs:
-```javascript
-let string =
-  "Hello, my name is Xiaolong.";
-let width = 12;
+Given a string and a line width (think of a font size that fits a fixed number of characters per line), work out how many lines the text takes when displayed.
+
+- Input: a string and an integer width, for example `"Hello, my name is Xiaolong."` and `12`.
+- Output: an integer, the number of lines needed.
+- Rule: commas and spaces are allowed to overflow the end of a line instead of starting a new one.
+
+The solution is in [`number-one/solution.js`](number-one/solution.js). It splits the text into words, spaces and commas, then fills lines one token at a time. It also prints each line, so for the example above you see:
+
+```
+Hello, my 
+name is 
+Xiaolong.
+3
 ```
 
-Response: Interger of how many lines it takes to display
-Commans and spaces must overflow
+## Tech stack
 
-```javascript
-let solution = (str, width) => {
-  let rtnArr = [];
-  let { words, char } = [...str].reduce(
-    (prev, curr, idx, arr) => {
-      if (curr == " " || curr == ",") {
-        prev.words.push(curr);
-        prev.char = "";
-      } else if (prev.char.length) {
-        prev.words[prev.words.length - 1] += curr;
-        prev.char = curr;
-      } else {
-        prev.words.push(curr);
-        prev.char = curr;
-      }
+Plain JavaScript (Node.js). No dependencies and no build step.
 
-      return prev;
-    },
-    { words: [], char: "" }
-  );
+## How to run
 
-  let tempLine = "";
-  for (i = 0; i < words.length; i++) {
-    if (tempLine.length + words[i].length >= width) {
-      if (words[i] == " " || words[i] == ",") {
-        tempLine += words[i];
-        continue;
-      }
-      rtnArr.push(tempLine);
-      tempLine = "";
-    }
-    tempLine += words[i];
-  }
-  if (tempLine.length) rtnArr.push(tempLine);
-  [...rtnArr].map((c) => console.log(c));
-  return rtnArr.length;
-};
+You need Node.js installed.
 
-console.log(solution(string, width));
+```bash
+node number-one/solution.js
 ```
+
+To try other input, edit the `string` and `width` values at the bottom of the file.
+
+## Status
+
+Working, but small. It is a set of practice solutions, not an application. There is no live demo and no test suite.
